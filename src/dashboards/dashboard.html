@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Dashboards M2G</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+      integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <link rel="stylesheet" href="./lib/bootstrap/bootstrap.min.css" />
+
+    <link
+      rel="shortcut icon"
+      href="https://portal.grupom2g.com/wp-content/uploads/2020/10/cropped-grupm2g-e1601848743718-32x32.png"
+      type="image/x-icon"
+    />
+
+    <link rel="stylesheet" href="./css/styles.css" type="text/css" />
+  </head>
+
+  <body style="background: linear-gradient(to bottom right, #eee, #aaa)">
+    <div class="body-container row">
+      <div id="topOfBody" class="col-2" hidden>
+        <!-- <button id="inicioPausaBucle" onclick="activarDesactivarBucle()"></button> -->
+
+        <span id="dashboardButtons"></span>
+
+        <div
+          class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark"
+          style="width: 100%; height: 100%"
+        >
+          <!-- <a href="#" class="btn btn-danger">Desactivar Bucle</a> -->
+
+          <!-- <h3>Menú Dashboards</h3> -->
+
+          <img src="./img/LogoGrupoM2GyVariaciones-01.png" alt="" />
+
+          <hr />
+          <div class="autocomplete my-3">
+            <input
+              type="text"
+              placeholder="⌕ Búsqueda"
+              id="search-bar"
+              class="search-bar form-control rounded"
+              autocomplete="off"
+              autofocus
+            />
+            <div id="results" class="autocomplete-items"></div>
+          </div>
+
+          <ul
+            class="nav nav-pills flex-column mb-auto"
+            id="dashboard-container-menu"
+          ></ul>
+          <ul class="nav nav-pills flex-column mb-auto">
+            <li>
+              <a
+                class="btn btn-danger d-grid"
+                href="https://dashboards-claro.grupom2g.com/"
+                target="_blank"
+              >
+                Claro
+              </a>
+            </li>
+            <li>
+              <a
+                class="btn btn-primary d-grid mt-2"
+                href="https://dashboards-xtrim.grupom2g.com/"
+                target="_blank"
+              >
+                TVCable
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="dashboard-container" class="col"></div>
+    </div>
+
+    <script src="./js/index.js" type="module"></script>
+
+    <script src="./lib/bootstrap/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
