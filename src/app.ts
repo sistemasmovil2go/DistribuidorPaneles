@@ -14,18 +14,17 @@ app.use(morgan("dev"));
 app.use(express.static(path.join(__dirname, "public")));
 
 //routes
-app.get("/", (_req, res) => {
-  res.sendFile(path.join(__dirname, "/public/welcome.html"));
-});
+app.get("/", (_req, res) => res.render("welcome"));
 
 app.get("/midashboard", async (req, res) => {
-  const puesto = getPuesto(req.query.puesto as string);
+  const puesto = req.query.puesto as string;
+  const db_puesto = getPuesto(puesto);
   const equipo = req.query.equipo;
   const ip = getIp(req.socket.remoteAddress);
 
   console.log(`Puesto enviado: ${puesto}, equipo: ${equipo}, ip remota: ${ip}`);
-  if (puesto && equipo && ip)
-    (await hasPermission(ip, puesto))
+  if (db_puesto && equipo && ip)
+    (await hasPermission(ip, db_puesto))
       ? res.render("dashboard", { puesto, ip })
       : res.status(403).render("error-403");
   else {

@@ -28,5 +28,7 @@ export function getPuesto(puesto: string | undefined): string | null {
   if (puesto === undefined) return null;
   const longitud = puesto.length;
 
+  if (longitud < 3) return puesto;
+
   return puesto.slice(longitud - 3);
 }
