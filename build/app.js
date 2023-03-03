@@ -14,10 +14,10 @@ app.set("views", path_1.default.join(__dirname, "views"));
 app.set("view engine", "ejs");
 // Middlewares
 app.use((0, morgan_1.default)("dev"));
-app.use(express_1.default.static(path_1.default.join(__dirname, "dashboards")));
+app.use(express_1.default.static(path_1.default.join(__dirname, "public")));
 //routes
 app.get("/", (_req, res) => {
-    res.sendFile(path_1.default.join(__dirname, "/dashboards/welcome.html"));
+    res.sendFile(path_1.default.join(__dirname, "/public/welcome.html"));
 });
 app.get("/midashboard", async (req, res) => {
     const puesto = req.query.puesto;
@@ -25,17 +25,17 @@ app.get("/midashboard", async (req, res) => {
     const ip = (0, utils_1.getIp)(req.socket.remoteAddress);
     console.log(`Puesto enviado: ${puesto}, equipo: ${equipo}, ip remota: ${ip}`);
     if (puesto && equipo && ip)
-        (await (0, utils_1.hasPermission)(ip, puesto)) || true
-            ? res.render("dashboard", { texto: "Este es un titulo", puesto, ip })
+        (await (0, utils_1.hasPermission)(ip, puesto) || true)
+            ? res.render("dashboard", { puesto, ip })
             : res
                 .status(403)
-                .sendFile(path_1.default.join(__dirname + "/dashboards/error-403.html"));
+                .render("error-403");
     else {
-        res.sendFile(path_1.default.join(__dirname + "/dashboards/welcome.html"));
+        res.render("welcome");
     }
 });
 app.get("*", (_req, res) => {
-    res.status(404).sendFile(path_1.default.join(__dirname + "/dashboards/error-404.html"));
+    res.status(404).render("error-404");
 });
 exports.default = app;
 //# sourceMappingURL=app.js.map

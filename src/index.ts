@@ -1,5 +1,4 @@
 import { AppDataSource } from "./config/db.config";
-import { Tbl_Dashboard } from "./entities/tbl_dashboard";
 import app from "./app";
 
 const EXPRESS_PORT: number = 8083;
@@ -15,9 +14,6 @@ async function main() {
   // dashboard.equipo = "Sistemas";
 
   // await dashboard.save();
-
-  const opciones = await Tbl_Dashboard.find({ where: { puesto: "69" } });
-  console.log(opciones);
 
   app.listen(EXPRESS_PORT, () =>
     console.log(`Server running on port ${EXPRESS_PORT}`)

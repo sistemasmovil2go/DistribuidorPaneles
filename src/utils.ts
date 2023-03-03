@@ -16,10 +16,17 @@ export async function hasPermission(
   return ip === db_ip && puesto === db_puesto;
 }
 
-export function getIp(ip: string | undefined): string {
-  if (ip === undefined) return "No hay IP";
+export function getIp(ip: string | undefined): string | null {
+  if (ip === undefined) return null;
   const ipSep = ip.split(":");
   const longitud = ip.split(":").length;
 
   return ipSep[longitud - 1];
+}
+
+export function getPuesto(puesto: string | undefined): string | null {
+  if (puesto === undefined) return null;
+  const longitud = puesto.length;
+
+  return puesto.slice(longitud - 3);
 }
