@@ -2,7 +2,7 @@ import { AppDataSource } from "./config/db.config";
 import { Tbl_Dashboard } from "./entities/tbl_dashboard";
 import app from "./app";
 
-const EXPRESS_PORT: number = 3333;
+const EXPRESS_PORT: number = 8083;
 
 async function main() {
   await AppDataSource.initialize();
