@@ -7,7 +7,6 @@ const express_1 = __importDefault(require("express"));
 const path_1 = __importDefault(require("path"));
 const morgan_1 = __importDefault(require("morgan"));
 const utils_1 = require("./utils");
-// const tienePermiso: boolean = true;
 const app = (0, express_1.default)();
 // Express settings
 app.set("views", path_1.default.join(__dirname, "views"));
@@ -20,16 +19,14 @@ app.get("/", (_req, res) => {
     res.sendFile(path_1.default.join(__dirname, "/public/welcome.html"));
 });
 app.get("/midashboard", async (req, res) => {
-    const puesto = req.query.puesto;
+    const puesto = (0, utils_1.getPuesto)(req.query.puesto);
     const equipo = req.query.equipo;
     const ip = (0, utils_1.getIp)(req.socket.remoteAddress);
     console.log(`Puesto enviado: ${puesto}, equipo: ${equipo}, ip remota: ${ip}`);
     if (puesto && equipo && ip)
-        (await (0, utils_1.hasPermission)(ip, puesto) || true)
+        (await (0, utils_1.hasPermission)(ip, puesto))
             ? res.render("dashboard", { puesto, ip })
-            : res
-                .status(403)
-                .render("error-403");
+            : res.status(403).render("error-403");
     else {
         res.render("welcome");
     }

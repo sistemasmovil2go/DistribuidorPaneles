@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getIp = exports.hasPermission = void 0;
+exports.getPuesto = exports.getIp = exports.hasPermission = void 0;
 const tbl_dashboard_1 = require("./entities/tbl_dashboard");
 async function hasPermission(ip, puesto) {
     if (!puesto)
@@ -17,10 +17,17 @@ async function hasPermission(ip, puesto) {
 exports.hasPermission = hasPermission;
 function getIp(ip) {
     if (ip === undefined)
-        return "No hay IP";
+        return null;
     const ipSep = ip.split(":");
     const longitud = ip.split(":").length;
     return ipSep[longitud - 1];
 }
 exports.getIp = getIp;
+function getPuesto(puesto) {
+    if (puesto === undefined)
+        return null;
+    const longitud = puesto.length;
+    return puesto.slice(longitud - 3);
+}
+exports.getPuesto = getPuesto;
 //# sourceMappingURL=utils.js.map
