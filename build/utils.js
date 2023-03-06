@@ -27,6 +27,8 @@ function getPuesto(puesto) {
     if (puesto === undefined)
         return null;
     const longitud = puesto.length;
+    if (longitud < 3)
+        return puesto;
     return puesto.slice(longitud - 3);
 }
 exports.getPuesto = getPuesto;
