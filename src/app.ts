@@ -12,7 +12,6 @@ app.set("view engine", "ejs");
 // Middlewares
 app.use(morgan("dev"));
 app.use(express.static(path.join(__dirname, "public")));
-app.use("/autogestion",express.static(path.join(__dirname, "public/auto")));
 
 //routes
 app.get("/", (_req, res) => res.render("welcome"));
@@ -32,6 +31,10 @@ app.get("/midashboard", async (req, res) => {
     res.render("welcome");
   }
 });
+
+app.get("/autogestion/*",(_req, res) => {
+  res.sendFile(path.join(__dirname, 'public/auto', 'index.html'));
+} )
 
 app.get("*", (_req, res) => {
   res.status(404).render("error-404");

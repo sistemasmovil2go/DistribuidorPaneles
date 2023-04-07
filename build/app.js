@@ -30,6 +30,9 @@ app.get("/midashboard", async (req, res) => {
         res.render("welcome");
     }
 });
+app.get("/autogestion/*", (_req, res) => {
+    res.sendFile(path_1.default.join(__dirname, 'public/auto', 'index.html'));
+});
 app.get("*", (_req, res) => {
     res.status(404).render("error-404");
 });
