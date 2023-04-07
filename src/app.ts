@@ -12,6 +12,7 @@ app.set("view engine", "ejs");
 // Middlewares
 app.use(morgan("dev"));
 app.use(express.static(path.join(__dirname, "public")));
+app.use("/autogestion",express.static(path.join(__dirname, "public/auto")));
 
 //routes
 app.get("/", (_req, res) => res.render("welcome"));
