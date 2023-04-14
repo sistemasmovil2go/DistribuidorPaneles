@@ -1,7 +1,7 @@
 import express from "express";
 import path from "path";
 import morgan from "morgan";
-import { getIp, getPuesto, hasPermission } from "./utils";
+import { checkPermission } from "./middlewares/permission";
 
 const app = express();
 
@@ -12,29 +12,21 @@ app.set("view engine", "ejs");
 // Middlewares
 app.use(morgan("dev"));
 app.use(express.static(path.join(__dirname, "public")));
+// app.use(checkPermission);
 
 //routes
 app.get("/", (_req, res) => res.render("welcome"));
 
-app.get("/midashboard", async (req, res) => {
-  const puesto = req.query.puesto as string;
-  const db_puesto = getPuesto(puesto);
-  const equipo = req.query.equipo;
-  const ip = getIp(req.socket.remoteAddress);
-
-  console.log(`Puesto enviado: ${puesto}, equipo: ${equipo}, ip remota: ${ip}`);
-  if (db_puesto && equipo && ip)
-    (await hasPermission(ip, db_puesto))
-      ? res.render("dashboard", { puesto, ip })
-      : res.status(403).render("error-403");
-  else {
-    res.render("welcome");
-  }
+app.get("/midashboard", checkPermission, async (_req, res) => {
+  const puesto = res.locals.puesto;
+  res.locals.hasPermission
+    ? res.render("dashboard", { puesto })
+    : res.status(403).render("error-403");
 });
 
-app.get("/autogestion/*",(_req, res) => {
-  res.sendFile(path.join(__dirname, 'public/auto', 'index.html'));
-} )
+// app.get("/:role/autogestion/*", getRole, (_req, res) => {
+//   res.sendFile(path.join(__dirname, "public/auto", "index.html"));
+// });
 
 app.get("*", (_req, res) => {
   res.status(404).render("error-404");

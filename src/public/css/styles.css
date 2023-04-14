@@ -9,6 +9,8 @@
 .error-message {
   margin: 40px 0 20px;
   font-family: "Lato", sans-serif;
+  font-size: 18px;
+  line-height: 28px;
 }
 
 .error-img {
@@ -16,81 +18,27 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
-  font-weight: 200;
 }
 
-.dashboard {
-  width: 99%;
-  height: 96vh;
-  align-items: center;
-}
-
-.dropdown-menu li {
-  position: relative;
-}
-
-.dropdown:hover > .dropdown-menu {
-  display: inline-block;
-  margin-top: 0;
-}
-
-.menu {
-  margin-top: 0.5rem;
-}
-
-.menu-button {
+.frames {
   width: 100%;
+  /* height: 100vh;
+  display: inline-block; */
 }
 
-.search-bar {
-  height: 37px;
-  padding-left: 10px;
-  position: relative;
-  display: inline-block;
+/* .dash-asesor{
+  width: 65%;
+  float: left;
+  resize: horizontal;
+  max-height: 100vh;
+  padding: 20px;
+
 }
 
-.search-bar::placeholder {
-  color: #757575;
-}
-
-.search-result {
-  color: #303030;
-  background-color: transparent;
-  border: 0;
-  pointer-events: none;
-}
-
-.autocomplete {
-  /*the container must be positioned relative:*/
-  position: relative;
-  display: inline-block;
-}
-
-.autocomplete-items {
-  position: absolute;
-  border: 1px solid #d4d4d4;
-  border-radius: 0.375rem;
-  max-height: 528px;
-  overflow-y: auto;
-  /*position the autocomplete items to be the same width as the container:*/
-  top: 0;
-  left: 100%;
-  display: none;
-}
-
-.autocomplete-items div {
-  padding: 10px;
-  cursor: pointer;
-  background-color: #f8f9fa;
-  color: #303030;
-  /* border-bottom: 1px solid #d4d4d4; */
-  white-space: nowrap;
-}
-
-.autocomplete-items div:hover {
-  /*when hovering an item:*/
-  background-color: DodgerBlue;
-}
+.auto {
+  width: 35%; 
+  float: left;
+} */
 
 /*when navigating through the items using the arrow keys:*/
 /* .autocomplete-active {
