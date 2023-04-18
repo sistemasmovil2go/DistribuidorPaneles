@@ -1,22 +1,28 @@
 import { AppDataSource } from "./config/db.config";
+import https from "https"
+import fs from "fs";
 import app from "./app";
 
-const EXPRESS_PORT: number = 8083;
+const PORT: number = 8083;
+const options = {
+  key: fs.readFileSync('../selfsigned-certs/cert-key.pem'),
+  cert: fs.readFileSync('../selfsigned-certs/cert.pem')
+};
+
 
 async function main() {
   await AppDataSource.initialize();
 
   console.log("Database Connected");
 
-  // const dashboard = new Tbl_Dashboard();
-  // dashboard.ip = "192.168.0.230";
-  // dashboard.puesto = "69";
-  // dashboard.equipo = "Sistemas";
+  //Para dev:
+  // app.listen(EXPRESS_PORT, () =>
+  //   console.log(`Server running on port ${EXPRESS_PORT}`)
 
-  // await dashboard.save();
+  const server = https.createServer(options, app);
 
-  app.listen(EXPRESS_PORT, () =>
-    console.log(`Server running on port ${EXPRESS_PORT}`)
+  server.listen(PORT, () =>
+    console.log(`Server running on port ${PORT}`)
   );
 }
 
